@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Crianças Pendentes</title>
+</head>
+
+<body>
+    <h2>Relatório: Crianças Pendentes de Vacinação</h2>
+    <a href="/filtros.html">Voltar para a página de filtros</a>
+    <hr>
+
+    <table border="1" cellpadding="5">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome da Criança</th>
+                <th>Nome da Mãe</th>
+                <th>Nome do Pai</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (criancas.length===0) { %>
+                <tr>
+                    <td colspan="4" style="text-align: center;">Nenhuma criança pendente encontrada para esta
+                        dose/vacina.</td>
+                </tr>
+                <% } else { %>
+                    <% criancas.forEach(crianca=> { %>
+                        <tr>
+                            <td>
+                                <%= crianca.id %>
+                            </td>
+                            <td>
+                                <%= crianca.nomeCompleto %>
+                            </td>
+                            <td>
+                                <%= crianca.nomeMae %>
+                            </td>
+                            <td>
+                                <%= crianca.nomePai %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                            <% } %>
+        </tbody>
+    </table>
+</body>
+
+</html>

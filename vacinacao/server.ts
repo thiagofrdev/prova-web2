@@ -41,7 +41,8 @@ app.use((req, res, next) => {
 
 // Rota GET simples para testar se o servidor está vivo
 app.get('/', (req, res) => {
-    res.send('Servidor do Thiago rodando perfeitamente!');
+    res.render('index');
+    //res.send('Servidor do Thiago rodando perfeitamente!');
 });
 
 // Inicializa o servidor na porta 3000

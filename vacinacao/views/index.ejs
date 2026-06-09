@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Vacinação - Home</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Painel de Controle de Vacinação</h1>
+        <p class="subtitle">Sistemas de Informação - Programação Web II</p>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>💉 Gerenciar Vacinas</h3>
+                <a href="/cadastro-vacina.html" class="btn">Novo Cadastro (HTML)</a>
+                <a href="/vacinas" class="btn btn-secondary">Listar Vacinas (EJS)</a>
+            </div>
+
+            <div class="card">
+                <h3>👶 Gerenciar Crianças</h3>
+                <a href="/cadastro-crianca.html" class="btn">Novo Cadastro (HTML)</a>
+                <a href="/criancas" class="btn btn-secondary">Listar Crianças (EJS)</a>
+            </div>
+
+            <div class="card">
+                <h3>📝 Aplicações de Doses</h3>
+                <a href="/aplicacoes/nova" class="btn">Registrar Dose (EJS Form)</a>
+                <a href="/aplicacoes" class="btn btn-secondary">Histórico (EJS Lista)</a>
+            </div>
+        </div>
+
+        <div class="card" style="max-width: 500px; margin: 0 auto;">
+            <h3>🔍 Consultas Avançadas e Filtros</h3>
+            <p style="font-size: 0.9rem; color: #7f8c8d; margin-bottom: 15px;">Filtros por Sexo, Ano de Nascimento e
+                Crianças com Doses Pendentes.</p>
+            <a href="/filtros.html" class="btn btn-dark">Abrir Central de Filtros</a>
+        </div>
+
+        <div class="footer">
+            IFBA - Campus Vitória da Conquista &copy; 2026
+        </div>
+    </div>
+
+</body>
+
+</html>

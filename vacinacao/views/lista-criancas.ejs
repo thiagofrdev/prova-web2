@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Crianças</title>
+</head>
+
+<body>
+    <h2>Relatório: Crianças</h2>
+    <a href="/filtros.html">Voltar para a página de filtros</a>
+    <hr>
+
+    <table border="1" cellpadding="5">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome Completo</th>
+                <th>Sexo</th>
+                <th>Data de Nascimento</th>
+                <th>Certidão de Nascimento</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% criancas.forEach(crianca=> { %>
+                <tr>
+                    <td>
+                        <%= crianca.id %>
+                    </td>
+                    <td>
+                        <%= crianca.nomeCompleto %>
+                    </td>
+                    <td>
+                        <%= crianca.sexo %>
+                    </td>
+                    <td>
+                        <%= new Date(crianca.dataNascimento).toLocaleDateString('pt-BR') %>
+                    </td>
+                    <td>
+                        <%= crianca.certidaoNascimento %>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+</body>
+
+</html>
