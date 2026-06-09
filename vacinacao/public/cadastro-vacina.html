@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Vacina</title>
+</head>
+
+<body>
+    <h2>Formulário de Cadastro de Vacina</h2>
+    <form action="/vacinas/nova" method="POST">
+        <label>Nome da Vacina:</label><br>
+        <input type="text" name="nome" required><br><br>
+
+        <label>Quantidade de Doses Normais:</label><br>
+        <input type="number" name="dosesNormal" required><br><br>
+
+        <label>Quantidade de Doses de Reforço:</label><br>
+        <input type="number" name="dosesReforco" required><br><br>
+
+        <button type="submit">Cadastrar Vacina</button>
+    </form>
+</body>
+
+</html>

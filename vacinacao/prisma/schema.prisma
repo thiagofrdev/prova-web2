@@ -1,0 +1,82 @@
+// ==========================================
+// 1. CONFIGURAÇÃO DE CONEXÃO
+// ==========================================
+datasource db {
+  provider = "mysql" // Define o MySQL como banco (Exigência da Atividade 8) [cite: 259]
+  url      = env("DATABASE_URL") // Lê a string de conexão do arquivo .env [cite: 243]
+}
+
+generator client {
+  provider = "prisma-client-js" // Gera o cliente TypeScript [cite: 246]
+}
+
+// ==========================================
+// 2. MODELOS E ENTIDADES (A MODELAGEM)
+// ==========================================
+
+model Crianca {
+  // @id define a Chave Primária. O @default(autoincrement()) gera os IDs 1, 2, 3 automaticamente
+  id                   Int         @id @default(autoincrement())
+  
+  // String mapeia para VARCHAR no MySQL. O nomeCompleto e os nomes dos pais são obrigatórios [cite: 224]
+  nomeCompleto         String
+  nomePai              String
+  nomeMae              String
+  
+  // Para limitar caracteres (ex: 'M' ou 'F'), você pode documentar ou tratar no backend [cite: 224]
+  sexo                 String      
+  
+  // DateTime lida com datas completas [cite: 224]
+  dataNascimento       DateTime
+  
+  // @unique cria um índice único no banco de dados. Não permite duas certidões iguais [cite: 224]
+  certidaoNascimento   String      @unique
+
+  // ── RELACIONAMENTO (Lado oposto do 1-para-Muitos)
+  // Uma criança pode ter um histórico de várias aplicações de vacina recebidas [cite: 227]
+  aplicacoes           Aplicacao[] 
+}
+
+model Vacina {
+  id                    Int         @id @default(autoincrement())
+  nome                  String      @unique // Nome da vacina (ex: "Tríplice Viral") [cite: 225]
+  quantidadeDosesNormal Int         // Inteiros para contagem de doses normais [cite: 225]
+  quantidadeDosesReforco Int         // Quantidade de doses de reforço exigidas [cite: 225]
+
+  // ── RELACIONAMENTOS
+  // 1. Uma vacina pode registrar várias aplicações em crianças diferentes [cite: 227]
+  aplicacoes            Aplicacao[]
+
+  // 2. Relação Muitos-para-Muitos (N:M) Implícita
+  // Uma vacina protege contra 1 ou mais doenças, e uma doença pode ser combatida por várias vacinas 
+  // O Prisma cria a tabela intermediária automaticamente em segundo plano!
+  doencas               Doenca[]
+}
+
+model Doenca {
+  id        Int      @id @default(autoincrement())
+  nome      String   @unique
+  cid       String   @unique // Classificação Internacional de Doenças (Ex: "B05" para Sarampo) 
+
+  // Lado oposto da relação Muitos-para-Muitos com Vacina 
+  vacinas   Vacina[]
+}
+
+// ── TABELA INTERMEDIÁRIA EXPLÍCITA (Com Atributos Próprios)
+// Usamos quando o "ato da relação" gera novas informações (data da vacinação, lote, tipo de dose) [cite: 227]
+model Aplicacao {
+  id               Int      @id @default(autoincrement())
+  dataAplicacao    DateTime @default(now()) // Armazena automaticamente o momento exato em que foi salvo
+  tipoDose         String   // Se é "Normal" ou "Reforço" [cite: 227]
+  numeroDose       Int      // 1, 2, 3, etc. [cite: 227]
+
+  // ── CONFIGURAÇÃO DO RELACIONAMENTO 1-PARA-MUITOS (1:N)
+  // Chaves estrangeiras (Campos físicos que guardam os IDs das tabelas pai)
+  criancaId        Int
+  vacinaId         Int
+
+  // @relation mapeia como as chaves estrangeiras se conectam aos IDs das tabelas pai [cite: 227]
+  // fields: campos locais desta tabela | references: campos chaves da tabela apontada
+  crianca          Crianca  @relation(fields: [criancaId], references: [id])
+  vacina           Vacina   @relation(fields: [vacinaId], references: [id])
+}
