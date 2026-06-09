@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Criança</title>
+</head>
+
+<body>
+    <h2>Formulário de Cadastro de Criança</h2>
+    <form action="/criancas/nova" method="POST">
+        <label>Nome Completo:</label><br>
+        <input type="text" name="nomeCompleto" required><br><br>
+
+        <label>Nome do Pai:</label><br>
+        <input type="text" name="nomePai" required><br><br>
+
+        <label>Nome da Mãe:</label><br>
+        <input type="text" name="nomeMae" required><br><br>
+
+        <label>Sexo:</label><br>
+        <select name="sexo" required>
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+        </select><br><br>
+
+        <label>Data de Nascimento:</label><br>
+        <input type="date" name="dataNascimento" required><br><br>
+
+        <label>Certidão de Nascimento:</label><br>
+        <input type="text" name="certidaoNascimento" required><br><br>
+
+        <button type="submit">Cadastrar Criança</button>
+    </form>
+</body>
+
+</html>

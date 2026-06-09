@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Filtros e Relatórios</title>
+</head>
+
+<body>
+    <h2>Relatório: Crianças por Sexo ou Ano</h2>
+    <form action="/criancas" method="GET">
+        <label>Sexo:</label>
+        <select name="sexo">
+            <option value="">Todos</option>
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+        </select><br><br>
+
+        <label>Ano de Nascimento (Opcional):</label>
+        <input type="number" name="ano" placeholder="Ex: 2022"><br><br>
+
+        <button type="submit">Buscar Crianças</button>
+    </form>
+
+    <hr>
+
+    <h2>Relatório: Crianças Pendentes de Vacina</h2>
+    <form action="/pendentes" method="GET">
+        <label>ID da Vacina (ex: 1):</label>
+        <input type="number" name="vacinaId" required><br><br>
+
+        <label>Dose Pendente (1, 2, 3...):</label>
+        <input type="number" name="numeroDose" required><br><br>
+
+        <button type="submit">Buscar Pendentes</button>
+    </form>
+</body>
+
+</html>

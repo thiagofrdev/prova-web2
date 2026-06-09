@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Aplicação</title>
+</head>
+
+<body>
+    <h2>Registrar Nova Aplicação de Vacina</h2>
+    <form action="/aplicacoes/nova" method="POST">
+        <label>Criança:</label><br>
+        <select name="criancaId" required>
+            <% criancas.forEach(crianca=> { %>
+                <option value="<%= crianca.id %>">
+                    <%= crianca.nomeCompleto %>
+                </option>
+                <% }) %>
+        </select><br><br>
+
+        <label>Vacina:</label><br>
+        <select name="vacinaId" required>
+            <% vacinas.forEach(vacina=> { %>
+                <option value="<%= vacina.id %>">
+                    <%= vacina.nome %>
+                </option>
+                <% }) %>
+        </select><br><br>
+
+        <label>Tipo de Dose:</label><br>
+        <select name="tipoDose" required>
+            <option value="Normal">Normal</option>
+            <option value="Reforço">Reforço</option>
+        </select><br><br>
+
+        <label>Número da Dose (1, 2, 3...):</label><br>
+        <input type="number" name="numeroDose" required><br><br>
+
+        <button type="submit">Registrar Aplicação</button>
+    </form>
+</body>
+
+</html>
